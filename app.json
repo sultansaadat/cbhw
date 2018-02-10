@@ -1,0 +1,17 @@
+{
+    "id": "rails",
+    "container": {
+    "type": "DOCKER",
+    "docker": {
+          "image": "862349788439.dkr.ecr.eu-central-1.amazonaws.com/roger:latest",
+          "network": "BRIDGE",
+          "portMappings": [
+              { "hostPort": 0, "containerPort": 3000, "protocol": "tcp", "servicePort": 10138 }
+          ]
+        }
+    },
+    "acceptedResourceRoles": ["slave_public"],
+    "instances": 1,
+    "cpus": 0.1,
+    "mem": 64
+}

@@ -1,6 +1,13 @@
+require 'socket'
+require 'ipaddr'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # stop strange warning message when running in docker
+  config.web_console.whitelisted_ips = Socket.ip_address_list.reduce([]) do |res, addrinfo|
+    addrinfo.ipv4? ? res << IPAddr.new(addrinfo.ip_address).mask(24) : res
+  end
+  
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
